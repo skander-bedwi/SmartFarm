@@ -6,9 +6,9 @@ using SmartFarm.Domain.Entities;
 
 public class InterventionService
 {
-    private readonly IInterventionRepository _repository;
+    private readonly IGenericRepository<Intervention> _repository;
 
-    public InterventionService(IInterventionRepository repository)
+    public InterventionService(IGenericRepository<Intervention> repository)
     {
         _repository = repository;
     }

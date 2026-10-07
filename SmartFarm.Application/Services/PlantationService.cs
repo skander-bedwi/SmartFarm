@@ -6,9 +6,9 @@ using SmartFarm.Domain.Entities;
 
 public class PlantationService
 {
-    private readonly IPlantationRepository _repository;
+    private readonly IGenericRepository<Plantation> _repository;
 
-    public PlantationService(IPlantationRepository repository)
+    public PlantationService(IGenericRepository<Plantation> repository)
     {
         _repository = repository;
     }

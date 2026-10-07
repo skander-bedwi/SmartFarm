@@ -6,13 +6,12 @@ using SmartFarm.Domain.Entities;
 
 public class IrrigationService
 {
-    private readonly IIrrigationRepository _repository;
+    private readonly IGenericRepository<Irrigation> _repository;
 
-    public IrrigationService(IIrrigationRepository repository)
+    public IrrigationService(IGenericRepository<Irrigation> repository)
     {
         _repository = repository;
     }
-
     public async Task<IEnumerable<IrrigationDto>> GetAllAsync()
     {
         var irrigations = await _repository.GetAllAsync();

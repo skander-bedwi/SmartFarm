@@ -15,30 +15,15 @@ builder.Services.AddDbContext<SmartFarmDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
-// service , interface
-// Parcelle
+// Un seul enregistrement générique pour TOUTES les entités
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-builder.Services.AddScoped<IParcelleRepository, ParcelleRepository>();
+// Les services restent un par un (logique métier propre à chacun)
 builder.Services.AddScoped<ParcelleService>();
-
-// Culture
-builder.Services.AddScoped<ICultureRepository, CultureRepository>();
 builder.Services.AddScoped<CultureService>();
-
-// Plantation
-builder.Services.AddScoped<IPlantationRepository, PlantationRepository>();
 builder.Services.AddScoped<PlantationService>();
-
-// MesureCapteur
-builder.Services.AddScoped<IMesureCapteurRepository, MesureCapteurRepository>();
 builder.Services.AddScoped<MesureCapteurService>();
-
-// Irrigation
-builder.Services.AddScoped<IIrrigationRepository, IrrigationRepository>();
 builder.Services.AddScoped<IrrigationService>();
-
-// Intervention
-builder.Services.AddScoped<IInterventionRepository, InterventionRepository>();
 builder.Services.AddScoped<InterventionService>();
 
 var app = builder.Build();

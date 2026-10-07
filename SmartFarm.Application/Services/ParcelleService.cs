@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SmartFarm.Application.Services
 {
     public  class ParcelleService
     {
-        private readonly IParcelleRepository _repository;
+        private readonly IGenericRepository<Parcelle> _repository;
 
-        public ParcelleService(IParcelleRepository repository)
+        public ParcelleService(IGenericRepository<Parcelle> repository)
         {
             _repository = repository;
         }

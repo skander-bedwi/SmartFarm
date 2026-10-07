@@ -6,9 +6,9 @@ using SmartFarm.Domain.Entities;
 
 public class CultureService
 {
-    private readonly ICultureRepository _repository;
+    private readonly IGenericRepository<Culture> _repository;
 
-    public CultureService(ICultureRepository repository)
+    public CultureService(IGenericRepository<Culture> repository)
     {
         _repository = repository;
     }

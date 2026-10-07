@@ -6,9 +6,9 @@ using SmartFarm.Domain.Entities;
 
 public class MesureCapteurService
 {
-    private readonly IMesureCapteurRepository _repository;
+    private readonly IGenericRepository<MesureCapteur> _repository;
 
-    public MesureCapteurService(IMesureCapteurRepository repository)
+    public MesureCapteurService(IGenericRepository<MesureCapteur> repository)
     {
         _repository = repository;
     }

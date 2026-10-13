@@ -3,6 +3,7 @@
 using SmartFarm.Application.DTOs;
 using SmartFarm.Application.Interfaces;
 using SmartFarm.Domain.Entities;
+using SmartFarm.Domain.Exceptions;
 
 public class PlantationService
 {
@@ -21,6 +22,9 @@ public class PlantationService
 
     public async Task<Guid> CreateAsync(CreatePlantationDto dto)
     {
+        if (dto.DateRecoltePrevue.HasValue && dto.DateRecoltePrevue <= dto.DatePlantation)
+            throw new BusinessRuleException("La date de recolte prevue doit etre apres la date de plantation.");
+
         var plantation = new Plantation
         {
             Id = Guid.NewGuid(),

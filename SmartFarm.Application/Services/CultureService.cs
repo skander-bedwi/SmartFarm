@@ -3,6 +3,7 @@
 using SmartFarm.Application.DTOs;
 using SmartFarm.Application.Interfaces;
 using SmartFarm.Domain.Entities;
+using SmartFarm.Domain.Exceptions;
 
 public class CultureService
 {
@@ -21,6 +22,9 @@ public class CultureService
 
     public async Task<Guid> CreateAsync(CreateCultureDto dto)
     {
+        if (string.IsNullOrWhiteSpace(dto.Nom))
+            throw new BusinessRuleException("Le nom de la culture est obligatoire.");
+
         var culture = new Culture
         {
             Id = Guid.NewGuid(),

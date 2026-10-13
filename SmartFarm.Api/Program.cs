@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SmartFarm.Api.Middlewares;
 using SmartFarm.Application.Interfaces;
 using SmartFarm.Application.Services;
 using SmartFarm.Infrastructure.Persistence;
@@ -27,6 +28,7 @@ builder.Services.AddScoped<IrrigationService>();
 builder.Services.AddScoped<InterventionService>();
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

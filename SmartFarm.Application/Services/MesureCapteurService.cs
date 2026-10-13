@@ -3,6 +3,7 @@
 using SmartFarm.Application.DTOs;
 using SmartFarm.Application.Interfaces;
 using SmartFarm.Domain.Entities;
+using SmartFarm.Domain.Exceptions;
 
 public class MesureCapteurService
 {
@@ -21,6 +22,9 @@ public class MesureCapteurService
 
     public async Task<Guid> CreateAsync(CreateMesureCapteurDto dto)
     {
+        if (dto.Humidite < 0 || dto.Humidite > 100)
+            throw new BusinessRuleException("L'humidite doit etre comprise entre 0 et 100.");
+
         var mesure = new MesureCapteur
         {
             Id = Guid.NewGuid(),

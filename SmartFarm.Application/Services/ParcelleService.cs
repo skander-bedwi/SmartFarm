@@ -1,6 +1,7 @@
 ﻿using SmartFarm.Application.DTOs;
 using SmartFarm.Application.Interfaces;
 using SmartFarm.Domain.Entities;
+using SmartFarm.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,12 @@ namespace SmartFarm.Application.Services
 
         public async Task<Guid> CreateAsync(CreateParcelleDto dto)
         {
+            if (string.IsNullOrWhiteSpace(dto.Nom))
+                throw new BusinessRuleException("Le nom de la parcelle est obligatoire.");
+
+            if (dto.SurfaceHectares <= 0)
+                throw new BusinessRuleException("La surface doit etre superieure a 0.");
+
             var parcelle = new Parcelle
             {
                 Id = Guid.NewGuid(),

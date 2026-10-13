@@ -3,6 +3,7 @@
 using SmartFarm.Application.DTOs;
 using SmartFarm.Application.Interfaces;
 using SmartFarm.Domain.Entities;
+using SmartFarm.Domain.Exceptions;
 
 public class IrrigationService
 {
@@ -20,6 +21,9 @@ public class IrrigationService
 
     public async Task<Guid> CreateAsync(CreateIrrigationDto dto)
     {
+        if (dto.VolumeEauLitres <= 0)
+            throw new BusinessRuleException("Le volume d'eau doit etre superieur a 0.");
+
         var irrigation = new Irrigation
         {
             Id = Guid.NewGuid(),

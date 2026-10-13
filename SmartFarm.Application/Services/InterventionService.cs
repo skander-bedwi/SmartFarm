@@ -3,6 +3,7 @@
 using SmartFarm.Application.DTOs;
 using SmartFarm.Application.Interfaces;
 using SmartFarm.Domain.Entities;
+using SmartFarm.Domain.Exceptions;
 
 public class InterventionService
 {
@@ -21,6 +22,9 @@ public class InterventionService
 
     public async Task<Guid> CreateAsync(CreateInterventionDto dto)
     {
+        if (string.IsNullOrWhiteSpace(dto.Type))
+            throw new BusinessRuleException("Le type d'intervention est obligatoire.");
+
         var intervention = new Intervention
         {
             Id = Guid.NewGuid(),
